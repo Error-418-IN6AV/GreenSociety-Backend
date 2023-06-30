@@ -91,9 +91,9 @@ exports.update = async(req, res)=>{
             return res.send({ message: 'Detalle donacion doesnt exists' });
         }
         //Actualizar
+        data.date = Date.now();
         let updatedDonacion = await Donacion.findOneAndUpdate(
             {_id: donacionId},
-            data.date = Date.now(),
             data,
             {new: true}
         )

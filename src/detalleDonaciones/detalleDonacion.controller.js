@@ -24,7 +24,7 @@ exports.add = async(req, res)=>{
 
 exports.get = async(req, res)=>{
     try{
-        let detalleDonaciones = await DetalleDonacion.find();
+        let detalleDonaciones = await DetalleDonacion.find().populate('causa');
         return res.send({message: 'Detalle de donaciones encontradas', detalleDonaciones})
     }catch(err){
         console.error(err);
