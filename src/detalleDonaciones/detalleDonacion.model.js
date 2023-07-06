@@ -6,6 +6,10 @@ const detalleDonacionSchema = mongoose.Schema({
     causa:{
         type: String,
         required: true
+    },
+    descripcion:{
+        type: String,
+        required: true
     }
 
 },{

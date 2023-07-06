@@ -11,10 +11,6 @@ const donacionesSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    noCuenta:{
-        type: String,
-        required: true
-    },
     donante: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

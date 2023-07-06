@@ -36,7 +36,7 @@ exports.add = async(req, res)=>{
 exports.getMyDonations = async(req, res)=>{
     try{      
         const userId = req.user.sub;
-        const donations = await Donacion.find({ donante: userId });
+        const donations = await Donacion.find({ donante: userId }).populate('donante', 'name').populate('beneficiario', 'name').populate('detalleDonacion', 'causa');;
         if (!donations) {
             return res.status(404).send({ message: 'Donaciones not found' });
         }
@@ -47,11 +47,11 @@ exports.getMyDonations = async(req, res)=>{
     }
 }
 
-//donaciones que he recibido
+//donaciones que me han hecho
 exports.getDonationsToMe = async(req, res)=>{
     try{      
         const userId = req.user.sub;
-        const donations = await Donacion.find({ beneficiario: userId });
+        const donations = await Donacion.find({ beneficiario: userId }).populate('donante', 'name').populate('beneficiario', 'name').populate('detalleDonacion', 'causa');;
         if (!donations) {
             return res.status(404).send({ message: 'Donaciones not found' });
         }
