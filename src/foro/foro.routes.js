@@ -4,9 +4,9 @@ const express = require('express');
 
 const api = express.Router();
 const foroController = require('./foro.contoller');
-const { ensureAuth } = require('../services/authenticated');
+const { ensureAuth, isAdmin } = require('../services/authenticated');
 
-api.post('/add', [ensureAuth],foroController.add);
+api.post('/add',foroController.add);
  api.get('/get', [ensureAuth],foroController.get); 
 api.get('/getForo/:id', [ensureAuth],foroController.getForo);
 api.put('/update/:id', [ensureAuth],foroController.update);
