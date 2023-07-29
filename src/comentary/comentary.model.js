@@ -3,9 +3,9 @@
 const mongoose = require('mongoose');
 
 const comentarySchema = mongoose.Schema({
-    fecha:{
-        type:Date,
-        default:Date.now()
+    fecha: {
+        type: Date,
+        default: Date.now()
     },
     description: {
         type: String,
@@ -14,28 +14,30 @@ const comentarySchema = mongoose.Schema({
     user: {
         type: String,
         required: true
-      },
-    name:{
+    },
+    name: {
         type: String,
     },
     foro: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Foro',
-        required: true 
+        required: true
     },
-    like:{
-        type:Number,
-        default:0
+    like: {
+        type: Number,
+        default: 0,
+      },
+      likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    dislike: {
+        type: Number,
+        default: 0
     },
-    dislike:{
-        type:Number,
-        default:0
-    }
+    dislikedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 
 },
 
-{
-    versionKey: false
-});
+    {
+        versionKey: false
+    });
 
 module.exports = mongoose.model('Comment', comentarySchema);
