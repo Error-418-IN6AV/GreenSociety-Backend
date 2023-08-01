@@ -20,7 +20,8 @@ exports.add = async (req, res) => {
         //Validar que exista la categoria
         let existCategory = await Category.findOne({ _id: data.category });
         if (!existCategory) return res.status(400).send({ message: 'Category not found' });
-
+        let price = data.price
+        data.total = price
         let product = new Product(data);
         await product.save();
         return res.send({ message: 'Product saved sucessfully' })
@@ -51,6 +52,18 @@ exports.getProduct = async (req, res) => {
     } catch (err) {
         console.log(err)
         return res.status(500).send({ message: 'Error getting Product' })
+    }
+}
+
+exports.getProducct = async (req, res) => {
+    try {
+        let productId = req.params.id;
+        let products = await Product.findOne({ _id: productId })
+        if (!products) return res.status(404).send({ message: 'Product not found' });
+        return res.send({ message: 'Product found:', products });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send({ message: 'Error getting product' });
     }
 }
 

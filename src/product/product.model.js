@@ -12,20 +12,23 @@ const productSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    stock:{
+    stock: {
         type: Number,
         required: true
     },
-    image:{
+    total: {
+        type: Number,
+    },
+    image: {
         type: String
     },
-    category:{
+    category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Categorie',
         required: true
     }
 
-},{
+}, {
     versionKey: false
 })
 
